@@ -76,6 +76,7 @@ set expandtab
 
 " Misc settings
 nnoremap <leader>v "+p
+vnoremap <leader>c "+y
 set noswapfile
 
 filetype plugin on

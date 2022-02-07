@@ -4,8 +4,8 @@
 - keep cursor positions when navigating between open files
 - fix cc
 - comment in visual mode
-- copy in visual mode
 - capital letters in fzf
 - ycm don't open weird window
 - new file
 - go to usages
+- zoom on window in split
