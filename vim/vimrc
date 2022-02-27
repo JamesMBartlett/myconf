@@ -16,6 +16,12 @@ Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
 Plug 'vim-autoformat/vim-autoformat'
 Plug 'KarimElghamry/vim-auto-comment'
+Plug 'preservim/vimux'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'yegappan/mru'
+Plug 'dhruvasagar/vim-zoom'
 
 " Initialize plugin system.
 call plug#end()
@@ -27,7 +33,11 @@ nnoremap <space> <Nop>
 let mapleader = " "
 
 " YCM Commands
-nnoremap <leader>g :YcmCompleter GoTo<CR>
+let g:ycm_autoclose_preview_window_after_insertion = 1
+nnoremap <leader>gt :YcmCompleter GoTo<CR>
+nnoremap <leader>gu :YcmCompleter GoToReferences<CR>
+nnoremap <leader>gi :YcmCompleter GoToImplementation<CR>
+nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
 nnoremap <expr> <leader>r ":YcmCompleter RefactorRename " . input("New name: ") . "<CR>"
 
@@ -46,9 +56,23 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
       \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
-" fzf
-set rtp+=~/.fzf
-noremap <C-t> :FZF<CR>
+" fzf.vim
+let g:fzf_command_prefix = 'Fzf'
+nnoremap <leader>tt :FzfFiles<CR>
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang FzfRG call RipgrepFzf(<q-args>, <bang>0)
+nnoremap <leader>tf :FzfRG<CR>
+
+" mru fzf
+command! FzfMru call fzf#run(fzf#wrap({'source': MruGetFiles()}))
+nnoremap <leader>to :FzfMru<CR>
 
 " vim-autoformat
 let g:autoformat_autoindent = 0
@@ -65,6 +89,15 @@ let g:inline_comment_dict = {
       \}
 nnoremap <C-/> :AutoInlineComment<CR>
 
+" vimux
+nnoremap <leader>cp :VimuxPromptCommand<CR>
+nnoremap <leader>cl :VimuxRunLastCommand<CR>
+nnoremap <leader>ci :VimuxInspectRunner<CR>
+nnoremap <leader>cz :VimuxZoomRunner<CR>
+nnoremap <leader>co :VimuxOpenRunner<CR>
+" Write all buffers before navigating from Vim to tmux pane
+let g:tmux_navigator_save_on_switch = 2
+
 " Visual Settings
 set background=dark
 set number
@@ -76,7 +109,13 @@ set expandtab
 
 " Misc settings
 nnoremap <leader>v "+p
-vnoremap <leader>c "+y
+vnoremap <leader>x "+y
 set noswapfile
+set autowrite
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
 
 filetype plugin on

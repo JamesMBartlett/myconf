@@ -1,11 +1,3 @@
-- when file changes should prompt update of buffers somehow
-- global search with <leader>f
-- search through open files
-- keep cursor positions when navigating between open files
 - fix cc
+- fix golang
 - comment in visual mode
-- capital letters in fzf
-- ycm don't open weird window
-- new file
-- go to usages
-- zoom on window in split
