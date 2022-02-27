@@ -4,15 +4,25 @@ then
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-if [ -f "$HOME/.zshrc" ]; then
-  cp $HOME/.zshrc zshrc.old
-fi
+cp zshrc $HOME/.james.zshrc
 
-cp zshrc $HOME/.zshrc
+# Add source james.zshrc to ~/.zshrc if it doesn't already exist.
+LINE='source $HOME/.james.zshrc'
+FILE="$HOME/.zshrc"
+grep -qF -- "$LINE" "$FILE" || sed -i.old '1s;^;'"$LINE"'\n;' "$FILE"
 
 # Install fzf.
 if [[ ! -d "$HOME/.fzf" ]]
 then
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
 fi
+
+# Install ripgrep
+which rg > /dev/null
+if [[ $? != 0 ]]
+then
+  sudo apt-get update
+  sudo apt-get install -y ripgrep
+fi
+
