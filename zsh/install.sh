@@ -4,6 +4,11 @@ then
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
+if [[ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode" ]]
+then
+git clone https://github.com/jeffreytse/zsh-vi-mode $HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode
+fi
+
 cp zshrc $HOME/.james.zshrc
 
 # Add source james.zshrc to ~/.zshrc if it doesn't already exist.
