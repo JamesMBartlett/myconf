@@ -42,8 +42,11 @@ cdiff(){
     diff -u $1 $2 | colordiff | /usr/share/doc/git/contrib/diff-highlight/diff-highlight
 }
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export EDITOR=vim
+function zvm_after_init() {
+  # Init FZF after zsh-vi-mode.
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+}
 
 # Make fzf respect .gitignore's
 export FZF_DEFAULT_COMMAND='fd --type f'
