@@ -31,11 +31,11 @@ alias squish='git status && git commit -a --amend -C HEAD'
 
 unalias kl
 kl() {
-pod_namespace=$(kubectl get pods -A -o json | jq -c ".items[]?.metadata|{namespace: .namespace, name: .name}" | fzf --layout reverse --height 40%)
-pod=$(echo ${pod_namespace} | jq ".name" | sed --expression 's/\"//g')
-namespace=$(echo ${pod_namespace} | jq ".namespace" | sed --expression 's/\"//g')
-container=$(kubectl get pod $pod -n "$namespace" -o json | jq ".spec.containers[]?.name | select(. != \"fluent-bit\")" | sed --expression 's/\"//g')
-kubectl -n $namespace logs $pod --container=$container $@
+  pod_namespace=$(kubectl get pods -A -o json | jq -c ".items[]?.metadata|{namespace: .namespace, name: .name}" | fzf --layout reverse --height 40%)
+  pod=$(echo ${pod_namespace} | jq ".name" | sed --expression 's/\"//g')
+  namespace=$(echo ${pod_namespace} | jq ".namespace" | sed --expression 's/\"//g')
+  container=$(kubectl get pod $pod -n "$namespace" -o json | jq ".spec.containers[]?.name | select(. != \"fluent-bit\")" | sed --expression 's/\"//g')
+  kubectl -n $namespace logs $pod --container=$container $@
 }
 
 cdiff(){
@@ -55,3 +55,13 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export GPG_TTY=$(tty)
 
 export PATH=$PATH:$HOME/.local/bin
+
+# Add command to delete least recently accessed files, beyond a certain capacity
+rmcache() {
+  # find files; sort by last accessed time [%A@]; accumulate file size in 512B blocks [%b]; print path [%p] when capacity exceeded; delete
+  # Taken from: https://github.com/bazelbuild/bazel/issues/5139
+  find $1 -type f -printf '%A@ %b %p\0' |
+    sort --numeric-sort --reverse --zero-terminated |
+    awk --assign RS='\0' --assign ORS='\0' --assign CAPACITY=$(($2 * 1024 * 1024 * 1024 / 512)) '{du += $2}; du > CAPACITY { print $3 }' |
+    xargs -r0 rm
+}
