@@ -19,7 +19,7 @@ ZSH_THEME="gallois"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git kubectl bazel zsh-vi-mode)
+plugins=(git kubectl bazel)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -43,10 +43,7 @@ cdiff(){
 }
 
 export EDITOR=vim
-function zvm_after_init() {
-  # Init FZF after zsh-vi-mode.
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-}
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Make fzf respect .gitignore's
 export FZF_DEFAULT_COMMAND='fd --type f'
