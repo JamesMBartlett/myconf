@@ -22,6 +22,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'yegappan/mru'
 Plug 'dhruvasagar/vim-zoom'
+Plug 'roxma/vim-tmux-clipboard'
 
 " Initialize plugin system.
 call plug#end()
@@ -89,6 +90,22 @@ let g:inline_comment_dict = {
       \}
 nnoremap <C-/> :AutoInlineComment<CR>
 
+"Copy github repo link.
+let g:repo_org = 'pixie-io'
+let g:repo_name = 'pixie'
+function! CopyGithubLinkToHere()
+  let line = line('.')
+  let url = printf('https://github.com/%s/%s/blob/main/%s#L%d', g:repo_org, g:repo_name, @%, line)
+  let @" = url
+  call system(printf('tee %s', g:yank_file),url)
+endfunction
+command! CopyGithubLink call CopyGithubLinkToHere()
+nnoremap <leader>b :CopyGithubLink<CR>
+
+" Write yank to file.
+let g:yank_file = "~/.vim.clipboard"
+autocmd TextYankPost * call system(printf('tee %s', g:yank_file),join(v:event["regcontents"], "\n"))
+
 " vimux
 nnoremap <leader>cp :VimuxPromptCommand<CR>
 nnoremap <leader>cl :VimuxRunLastCommand<CR>
@@ -117,5 +134,8 @@ autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
      \ endif
+
+" Tell vim that Jenkinsfile uses groovy syntax
+autocmd BufRead,BufNewFile Jenkinsfile set filetype=groovy
 
 filetype plugin on
