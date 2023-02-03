@@ -11,4 +11,7 @@ fi
 cp ./vimrc ~/.vimrc
 
 mkdir -p ~/.vim/ftplugin
-cp langs/* ~/.vim/ftplugin/
+cp langs/*.vim ~/.vim/ftplugin/
+
+mkdir -p ~/.vim/after/ftplugin
+cp langs/after/*.vim ~/.vim/after/ftplugin
