@@ -79,10 +79,18 @@ nnoremap <leader>to :FzfMru<CR>
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:formatdef_buildifier='"buildifier --lint=fix"'
+let g:formatdef_goimports="'goimports -srcdir='.expand('%')"
 let g:formatters_go = ['gofmt_2']
 nnoremap <leader>f :Autoformat<CR>
 
-nnoremap <leader>i :%!goimports -srcdir %<CR>
+function! GoImportsAutoformat()
+  let old_go_formatters = g:formatters_go
+  let g:formatters_go = ['goimports']
+  :Autoformat
+  let g:formatters_go = old_go_formatters
+endfunction
+command! RunGoImportsAutoformat call GoImportsAutoformat()
+nnoremap <leader>i :RunGoImportsAutoformat<CR>
 
 " vim-auto-comment
 let g:autocomment_map_keys=0
