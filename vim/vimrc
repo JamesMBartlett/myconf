@@ -118,4 +118,7 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 
+" Set tsx as typescript
+au BufNewFile,BufRead *.tsx set filetype=typescript
+
 filetype plugin on
