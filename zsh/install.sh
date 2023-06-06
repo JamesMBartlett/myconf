@@ -31,3 +31,9 @@ then
   sudo apt-get install -y ripgrep
 fi
 
+# Install kubectx
+if [[ ! -d "$HOME/.kubectx" ]]; then
+  git clone --depth 1 https://github.com/ahmetb/kubectx "$HOME/.kubectx"
+  ln -sf "$HOME/.kubectx/kubectx" "$HOME/bin/kubectx"
+  ln -sf "$HOME/.kubectx/kubens" "$HOME/bin/kubens"
+fi

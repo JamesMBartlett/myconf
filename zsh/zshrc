@@ -21,6 +21,8 @@ ZSH_THEME="gallois"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git kubectl bazel)
 
+export RPS1='[$(kubectx -c)]'
+
 source $ZSH/oh-my-zsh.sh
 
 alias pbcopy='xclip -selection clipboard'
