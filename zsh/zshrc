@@ -46,7 +46,7 @@ export EDITOR=vim
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Make fzf respect .gitignore's
-export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_COMMAND='fd -H -E .git --type f'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export GPG_TTY=$(tty)
