@@ -138,4 +138,7 @@ autocmd BufReadPost *
 " Tell vim that Jenkinsfile uses groovy syntax
 autocmd BufRead,BufNewFile Jenkinsfile set filetype=groovy
 
+" Set tsx as typescript
+au BufNewFile,BufRead *.tsx set filetype=typescript
+
 filetype plugin on
