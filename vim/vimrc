@@ -24,8 +24,18 @@ Plug 'yegappan/mru'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'roxma/vim-tmux-clipboard'
 
+Plug 'google/vim-maktaba'
+Plug 'google/vim-coverage'
+Plug 'google/vim-glaive'
+
 " Initialize plugin system.
 call plug#end()
+
+call glaive#Install()
+
+" Set the vim-coverage gcov path to work with bazel
+let g:coverage_plugin = maktaba#plugin#Get('coverage')
+let g:coverage_plugin.globals._gcov_temp_search_paths = ['bazel-out/_coverage']
 
 autocmd vimenter * ++nested colorscheme gruvbox
 
@@ -118,14 +128,12 @@ nnoremap <leader>b :CopyGithubLink<CR>
 let g:yank_file = "~/.vim.clipboard"
 autocmd TextYankPost * call system(printf('tee %s', g:yank_file),join(v:event["regcontents"], "\n"))
 
-" vimux
-nnoremap <leader>cp :VimuxPromptCommand<CR>
-nnoremap <leader>cl :VimuxRunLastCommand<CR>
-nnoremap <leader>ci :VimuxInspectRunner<CR>
-nnoremap <leader>cz :VimuxZoomRunner<CR>
-nnoremap <leader>co :VimuxOpenRunner<CR>
 " Write all buffers before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 2
+
+" vim-coverage
+nnoremap <leader>cs :CoverageShow gcov<CR>
+nnoremap <leader>ch :CoverageHide<CR>
 
 " Visual Settings
 set background=dark
