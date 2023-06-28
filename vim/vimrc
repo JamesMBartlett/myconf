@@ -131,8 +131,14 @@ autocmd TextYankPost * call system(printf('tee %s', g:yank_file),join(v:event["r
 " Write all buffers before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 2
 
+let s:registry = maktaba#extension#GetRegistry('coverage')
+call s:registry.AddExtension({
+  \ 'name': 'bazelgcov',
+  \ 'GetCoverage': function('bazelgcov#GetCoverage'),
+  \ 'IsAvailable': function('bazelgcov#IsAvailable')})
+
 " vim-coverage
-nnoremap <leader>cs :CoverageShow gcov<CR>
+nnoremap <leader>cs :CoverageShow bazelgcov<CR>
 nnoremap <leader>ch :CoverageHide<CR>
 
 " Visual Settings

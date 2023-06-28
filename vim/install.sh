@@ -10,6 +10,12 @@ if [ -f "$HOME/.vimrc" ]; then
 fi
 cp ./vimrc ~/.vimrc
 
+mkdir -p ~/.vim/autoload/
+cp autoload/*.vim ~/.vim/autoload
+
+mkdir -p ~/.vim/scripts/
+cp scripts/* ~/.vim/scripts/
+
 mkdir -p ~/.vim/ftplugin
 cp langs/*.vim ~/.vim/ftplugin/
 
