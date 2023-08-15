@@ -1,0 +1,5 @@
+name 'james'
+maintainer 'james'
+maintainer_email 'jmabartlett@gmail.com'
+description 'james dev setup'
+version '0.0.1'

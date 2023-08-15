@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/james/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 export SHELL="/usr/bin/zsh"
 
 autoload -Uz compinit
@@ -31,7 +31,7 @@ alias kc='kubectl'
 alias wip='git commit -m "WIP"'
 alias squish='git status && git commit -a --amend -C HEAD'
 
-unalias kl
+unalias kl || true
 kl() {
   pod_namespace=$(kubectl get pods -A -o json | jq -c ".items[]?.metadata|{namespace: .namespace, name: .name}" | fzf --layout reverse --height 40%)
   pod=$(echo ${pod_namespace} | jq ".name" | sed --expression 's/\"//g')
@@ -53,6 +53,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export GPG_TTY=$(tty)
 
+export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/.local/bin
 
 # Add command to delete least recently accessed files, beyond a certain capacity

@@ -1,0 +1,2 @@
+source $HOME/.james.zshrc
+source $HOME/.*.zshrc || true

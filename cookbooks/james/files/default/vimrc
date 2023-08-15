@@ -167,4 +167,10 @@ autocmd BufRead,BufNewFile Jenkinsfile set filetype=groovy
 " Set tsx as typescript
 au BufNewFile,BufRead *.tsx set filetype=typescript
 
+" Set all .zshrc as zsh scripts
+au BufNewFile,BufRead *.zshrc set filetype=zsh
+
+" Set all .vimrc as vim scripts
+au BufNewFile,BufRead *.vimrc set filetype=vim
+
 filetype plugin on

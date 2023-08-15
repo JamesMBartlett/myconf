@@ -1,1 +1,2 @@
-*.old
+chef_guid
+local-mode-cache
