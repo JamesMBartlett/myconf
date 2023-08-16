@@ -1,2 +1,8 @@
 source $HOME/.james.zshrc
-source $HOME/.*.zshrc || true
+
+for f in $HOME/.*.zshrc
+do
+  if [[ "$f" != "$HOME/.james.zshrc" ]]; then
+    source "$f"
+  fi
+done
