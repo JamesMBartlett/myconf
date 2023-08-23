@@ -21,7 +21,7 @@ ZSH_THEME="gallois"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git kubectl bazel)
 
-export RPS1='[$(kubectx -c)]'
+export RPS1='[$(kubectx -c 2>/dev/null)]'
 
 source $ZSH/oh-my-zsh.sh
 
@@ -31,18 +31,27 @@ alias kc='kubectl'
 alias wip='git commit -m "WIP"'
 alias squish='git status && git commit -a --amend -C HEAD'
 
-unalias kl || true
-kl() {
-  pod_namespace=$(kubectl get pods -A -o json | jq -c ".items[]?.metadata|{namespace: .namespace, name: .name}" | fzf --layout reverse --height 40%)
-  pod=$(echo ${pod_namespace} | jq ".name" | sed --expression 's/\"//g')
-  namespace=$(echo ${pod_namespace} | jq ".namespace" | sed --expression 's/\"//g')
-  container=$(kubectl get pod $pod -n "$namespace" -o json | jq ".spec.containers[]?.name | select(. != \"fluent-bit\")" | sed --expression 's/\"//g')
-  kubectl -n $namespace logs $pod --container=$container $@
-}
+# Setup pyenv
+export PYENV_ROOT="$HOME/tools/pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
-cdiff(){
-    diff -u $1 $2 | colordiff | /usr/share/doc/git/contrib/diff-highlight/diff-highlight
-}
+if ! alias kl >/dev/null 2>&1; then
+  kl() {
+    pod_namespace=$(kubectl get pods -A -o json | jq -c ".items[]?.metadata|{namespace: .namespace, name: .name}" | fzf --layout reverse --height 40%)
+    pod=$(echo ${pod_namespace} | jq ".name" | sed --expression 's/\"//g')
+    namespace=$(echo ${pod_namespace} | jq ".namespace" | sed --expression 's/\"//g')
+    container=$(kubectl get pod $pod -n "$namespace" -o json | jq ".spec.containers[]?.name | select(. != \"fluent-bit\")" | sed --expression 's/\"//g')
+    kubectl -n $namespace logs $pod --container=$container $@
+  }
+fi
+
+if ! alias diff >/dev/null 2>&1; then
+  cdiff(){
+      diff -u $1 $2 | colordiff | /usr/share/doc/git/contrib/diff-highlight/diff-highlight
+  }
+fi
 
 export EDITOR=vim
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

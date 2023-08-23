@@ -19,3 +19,12 @@ end
 
 remote_binary 'kubectx'
 remote_binary 'kubens'
+
+remote_archive 'fzf' do
+  path "#{node['home_dir']}/.fzf"
+  strip_components 1
+end
+
+execute 'Install fzf' do
+  command ["#{node['home_dir']}/.fzf/install"]
+end
