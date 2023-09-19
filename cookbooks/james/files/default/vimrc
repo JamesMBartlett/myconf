@@ -27,6 +27,7 @@ Plug 'roxma/vim-tmux-clipboard'
 Plug 'google/vim-maktaba'
 Plug 'google/vim-coverage'
 Plug 'google/vim-glaive'
+Plug 'uarun/vim-protobuf'
 
 " Initialize plugin system.
 call plug#end()
@@ -172,5 +173,8 @@ au BufNewFile,BufRead *.zshrc set filetype=zsh
 
 " Set all .vimrc as vim scripts
 au BufNewFile,BufRead *.vimrc set filetype=vim
+
+" Set all .proto3 as proto
+au BufNewFile,BufRead *.proto3 set filetype=proto
 
 filetype plugin on
