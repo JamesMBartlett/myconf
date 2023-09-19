@@ -6,3 +6,4 @@ include_recipe 'james::vim'
 include_recipe 'james::tmux'
 
 include_recipe 'james::python'
+include_recipe 'james::bazel'
