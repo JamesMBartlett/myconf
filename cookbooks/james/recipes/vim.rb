@@ -1,14 +1,14 @@
 remote_directory "#{node['home_dir']}/.vim" do
   mode '0755'
-  owner node['user']
-  group node['user']
+  owner node['owner']
+  group node['group']
   source 'vim'
   action :create
 end
 
 cookbook_file "#{node['home_dir']}/.vimrc" do
-  owner node['user']
-  group node['user']
+  owner node['owner']
+  group node['group']
   mode '0644'
   source 'vimrc'
   action :create

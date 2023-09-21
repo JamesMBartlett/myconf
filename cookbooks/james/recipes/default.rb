@@ -1,3 +1,4 @@
+include_recipe 'james::mac_os_x'
 include_recipe 'james::linux'
 
 include_recipe 'james::git'

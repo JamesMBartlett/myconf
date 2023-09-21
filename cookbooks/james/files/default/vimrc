@@ -178,3 +178,5 @@ au BufNewFile,BufRead *.vimrc set filetype=vim
 au BufNewFile,BufRead *.proto3 set filetype=proto
 
 filetype plugin on
+
+set shell=zsh

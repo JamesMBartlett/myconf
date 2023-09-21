@@ -1,18 +1,23 @@
+remote_file '/tmp/oh-my-zsh-install.sh' do
+  source 'https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh'
+  mode '0777'
+end
+
 execute 'install oh-my-zsh' do
-  command ['sh', '-c', '$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)']
+  command ['sh', '/tmp/oh-my-zsh-install.sh']
   creates "#{node['home_dir']}/.oh-my-zsh/oh-my-zsh.sh"
 end
 
 cookbook_file "#{node['home_dir']}/.james.zshrc" do
-  owner node['user']
-  group node['user']
+  owner node['owner']
+  group node['group']
   mode '0644'
   source 'james.zshrc'
 end
 
 cookbook_file "#{node['home_dir']}/.zshrc" do
-  owner node['user']
-  group node['user']
+  owner node['owner']
+  group node['group']
   mode '0644'
   source 'zshrc'
 end

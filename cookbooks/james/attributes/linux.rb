@@ -2,6 +2,9 @@ if ! platform_family?('debian')
   return
 end
 
+default['owner'] = node['user']
+default['group'] = node['user']
+
 default['kubectx']['url'] = 'https://github.com/ahmetb/kubectx/releases/download/v0.9.5/kubectx_v0.9.5_linux_x86_64.tar.gz'
 default['kubectx']['sha256'] = 'a2247ffd23e79f89abdd0e8173379d7172511f02a3f63c9936d3824e0dd60648'
 

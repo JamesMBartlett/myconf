@@ -15,16 +15,16 @@ action :create do
     extract_dir = new_resource.path
   else
     directory base_dir do
-      owner node['user']
-      group node['user']
+      owner node['owner']
+      group node['group']
       mode '0755'
       action :create
     end
   end
 
   directory extract_dir do
-    owner node['user']
-    group node['user']
+    owner node['owner']
+    group node['group']
     mode '0755'
     action :create
   end

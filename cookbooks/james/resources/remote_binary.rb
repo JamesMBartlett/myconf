@@ -14,22 +14,22 @@ action :create do
   bin_dir = "#{home_dir}/bin"
 
   directory base_dir do
-    owner node['user']
-    group node['user']
+    owner node['owner']
+    group node['group']
     mode '0755'
     action :create
   end
 
   directory extract_dir do
-    owner node['user']
-    group node['user']
+    owner node['owner']
+    group node['group']
     mode '0755'
     action :create
   end
 
   directory bin_dir do
-    owner node['user']
-    group node['user']
+    owner node['owner']
+    group node['group']
     mode '0755'
     action :create
   end
@@ -70,8 +70,8 @@ action :create do
   link link_path do
     to binary_path
     link_type :symbolic
-    owner node['user']
-    group node['user']
+    owner node['owner']
+    group node['group']
     action :create
   end
 end
