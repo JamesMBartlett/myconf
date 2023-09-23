@@ -27,3 +27,8 @@ apt_pkg_list = [
 apt_package apt_pkg_list do
   action :upgrade
 end
+
+remote_binary 'gh' do
+  binary_path_in_tar 'bin/gh'
+  strip_components 1
+end
