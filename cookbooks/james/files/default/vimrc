@@ -114,11 +114,10 @@ let g:inline_comment_dict = {
 nnoremap <C-/> :AutoInlineComment<CR>
 
 "Copy github repo link.
-let g:repo_org = 'pixie-io'
-let g:repo_name = 'pixie'
 function! CopyGithubLinkToHere()
+  let github_repo = substitute(system('git remote get-url origin | grep -Po "(?<=github.com:).*(?=.git)"'), '\n', '', 'g')
   let line = line('.')
-  let url = printf('https://github.com/%s/%s/blob/main/%s#L%d', g:repo_org, g:repo_name, @%, line)
+  let url = printf('https://github.com/%s/blob/main/%s#L%d', github_repo, @%, line)
   let @" = url
   call system(printf('tee %s', g:yank_file),url)
 endfunction
