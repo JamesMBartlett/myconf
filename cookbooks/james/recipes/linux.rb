@@ -32,3 +32,5 @@ remote_binary 'gh' do
   binary_path_in_tar 'bin/gh'
   strip_components 1
 end
+
+remote_binary 'k9s'
