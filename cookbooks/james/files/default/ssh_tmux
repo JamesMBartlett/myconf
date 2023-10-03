@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# reconnect to or spawn a new tmux session on the remote host via ssh.
+# If the network connection is lost, ssh will reconnect after a small
+# delay.
+#
+
+SSH_HOSTNAME=$1
+TMUX_NAME=$2
+
+if [[ "$TMUX_NAME" = "" ]]; then
+    echo "Must provide tmux session name"
+    exit 1
+fi
+
+echo Connecting to tmux $TMUX_NAME on hostname $SSH_HOSTNAME
+
+SLEEP=0
+while true; do
+    ssh -o TCPKeepAlive=no -o ServerAliveInterval=15 -C -t -o BatchMode=yes $SSH_HOSTNAME "tmux attach-session -t $TMUX_NAME || tmux -2 -u new-session -s $TMUX_NAME"
+    SLEEP=3
+    if [ $SLEEP -gt 0 ]
+    then
+        echo Reconnecting to session $TMUX_NAME on hostname $SSH_HOSTNAME in $SLEEP seconds
+        sleep $SLEEP
+    fi
+done
