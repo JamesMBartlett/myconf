@@ -18,4 +18,5 @@ vim_plug_cmd = ['curl', '-fLo', "#{node['home_dir']}/.vim/autoload/plug.vim", '-
 execute 'install vim-plug' do
   command vim_plug_cmd
   creates "#{node['home_dir']}/.vim/autoload/plug.vim"
+  user node['user']
 end

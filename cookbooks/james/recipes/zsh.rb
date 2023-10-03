@@ -6,6 +6,7 @@ end
 execute 'install oh-my-zsh' do
   command ['sh', '/tmp/oh-my-zsh-install.sh']
   creates "#{node['home_dir']}/.oh-my-zsh/oh-my-zsh.sh"
+  user node['user']
 end
 
 cookbook_file "#{node['home_dir']}/.james.zshrc" do
@@ -32,4 +33,5 @@ end
 
 execute 'Install fzf' do
   command ["#{node['home_dir']}/.fzf/install"]
+  user node['user']
 end
