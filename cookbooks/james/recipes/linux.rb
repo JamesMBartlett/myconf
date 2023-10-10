@@ -34,3 +34,9 @@ remote_binary 'gh' do
 end
 
 remote_binary 'k9s'
+
+link "#{node['home_dir']}/bin/fd" do
+  to '/usr/bin/fdfind'
+  owner node['owner']
+  group node['group']
+end
