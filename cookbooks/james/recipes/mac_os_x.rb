@@ -2,6 +2,8 @@ if !platform_family?("mac_os_x")
   return
 end
 
+homebrew_update 'update homebrew'
+
 homebrew_package 'wget'
 homebrew_package 'zsh'
 homebrew_package 'ripgrep'
@@ -15,4 +17,4 @@ homebrew_package 'cmake'
 homebrew_package 'gpg2'
 homebrew_package 'gnupg'
 homebrew_package 'gh'
-homebrew_package 'derailed/k9s/k9s'
+#homebrew_package 'derailed/k9s/k9s'

@@ -179,3 +179,5 @@ au BufNewFile,BufRead *.proto3 set filetype=proto
 filetype plugin on
 
 set shell=zsh
+
+set backspace=indent,eol,start
