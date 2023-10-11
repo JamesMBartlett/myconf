@@ -1,0 +1,5 @@
+Host !*.* *
+    ForwardAgent yes
+    ControlPath ~/.ssh/sockets/%r@%h:%p
+    ControlMaster auto
+    ControlPersist 10m
