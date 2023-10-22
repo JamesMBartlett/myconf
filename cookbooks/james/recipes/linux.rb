@@ -22,6 +22,7 @@ apt_pkg_list = [
   'zsh',
   'ripgrep',
   'fd-find',
+  'ruby',
 ]
 
 apt_package apt_pkg_list do
