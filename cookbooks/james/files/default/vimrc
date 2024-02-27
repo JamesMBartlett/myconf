@@ -94,7 +94,8 @@ let g:formatdef_buildifier='"buildifier --lint=fix"'
 let g:formatdef_goimports="'goimports -srcdir='.expand('%')"
 let g:formatters_go = ['gofmt_2']
 let g:formatdef_isort='"isort -d -"'
-let g:formatters_python = ['isort', 'black']
+let g:formatdef_autoflake='"autoflake --remove-all-unused-imports -"'
+let g:formatters_python = ['isort', 'autoflake', 'black']
 let g:run_all_formatters_python = 1
 nnoremap <leader>f :Autoformat<CR>
 
