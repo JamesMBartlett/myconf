@@ -1,6 +1,9 @@
 My dev setup.
 
-Install chef-solo from here: https://www.chef.io/downloads/tools/infra-client.
+Install chef-solo:
+```
+wget -O- https://opscode.com/chef/install.sh | sudo bash
+```
 
 Then run:
 ```
