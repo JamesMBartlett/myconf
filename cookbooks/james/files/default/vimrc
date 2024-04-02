@@ -28,6 +28,7 @@ Plug 'google/vim-maktaba'
 Plug 'google/vim-coverage'
 Plug 'google/vim-glaive'
 Plug 'uarun/vim-protobuf'
+Plug 'hashivim/vim-terraform'
 
 " Initialize plugin system.
 call plug#end()
