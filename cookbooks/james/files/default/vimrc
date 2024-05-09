@@ -73,10 +73,10 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 let g:fzf_command_prefix = 'Fzf'
 nnoremap <leader>tt :FzfFiles<CR>
 function! RipgrepFzf(query, fullscreen)
-  let rg_prefix = 'rg --column --line-number --no-heading --color=always --smart-case --hidden --glob "!.git"'
-  let command_fmt = rg_prefix." %s -- '%s' || true"
+  let rg_prefix = 'rg --column --line-number --max-filesize 10M --no-heading --color=always --smart-case --hidden --glob "!.git"'
+  let command_fmt = rg_prefix." %s -- '%s' | head -n200 || true"
   let initial_command = printf(command_fmt, '', shellescape(a:query))
-  let reload_command = rg_prefix.' $(echo {q} | cut -d: -f1 -s) -- "$(echo {q} | cut -d: -f2-)" || true'
+  let reload_command = rg_prefix.' $(echo {q} | cut -d: -f1 -s) -- "$(echo {q} | cut -d: -f2-)" | head -n200 || true'
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
