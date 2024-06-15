@@ -103,8 +103,8 @@ syn match   mlirAttrIdentifier /#\d\+\>/
 
 " Syntax-highlight lit test commands and bug numbers.
 syn match  mlirSpecialComment /\/\/\s*RUN:.*$/
-syn match  mlirSpecialComment /\/\/\s*CHECK:.*$/
-syn match  mlirSpecialComment "\v\/\/\s*CHECK-(NEXT|NOT|DAG|SAME|LABEL):.*$"
+syn match  mlirSpecialComment /\v\/\/\s*([A-Z]+-)?CHECK:.*$/
+syn match  mlirSpecialComment "\v\/\/\s*([A-Z]+-)?CHECK-(NEXT|NOT|DAG|SAME|LABEL):.*$"
 syn match  mlirSpecialComment /\/\/\s*expected-error.*$/
 syn match  mlirSpecialComment /\/\/\s*expected-remark.*$/
 syn match  mlirSpecialComment /;\s*XFAIL:.*$/
