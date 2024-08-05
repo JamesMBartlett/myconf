@@ -21,3 +21,11 @@ cookbook_file "#{node['home_dir']}/.ssh/rc" do
   source 'ssh_rc'
   action :create
 end
+
+cookbook_file "#{node['home_dir']}/.ssh/authorized_keys" do
+  owner node['owner']
+  group node['group']
+  mode '0755'
+  source 'ssh_authorized_keys'
+  action :create
+end
