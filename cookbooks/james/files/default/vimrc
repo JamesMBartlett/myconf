@@ -155,11 +155,15 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+"Toggle set paste with <leader>sp
+nnoremap <leader>sp :set invpaste paste?<CR>
+
 " Misc settings
 nnoremap <leader>v "+p
 vnoremap <leader>x "+y
 set noswapfile
 set autowrite
+
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
