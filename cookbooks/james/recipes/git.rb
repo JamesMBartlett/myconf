@@ -2,7 +2,7 @@ bash 'setup git aliases' do
   code <<-EOH
     git config --global alias.co checkout
     git config --global alias.s status
-    git config --global alias.sed '! git grep -z --full-name -l '.' | xargs -0 sed -i -e'
+    git config --global alias.mru 'branch --sort=-committerdate'
   EOH
   user node['user']
   environment ({'HOME' => "#{node['home_dir']}"})
@@ -37,6 +37,23 @@ end
 
 link "#{node['home_dir']}/bin/git-chain" do
   to "#{node['home_dir']}/tools/git-chain/bin/git-chain"
+  link_type :symbolic
+  owner node['owner']
+  group node['group']
+  action :create
+end
+
+git 'git-sed' do
+  repository 'https://github.com/ext/git-sed.git'
+  revision '4466eca262a2187464c63340acbe89b44492cc38'
+  destination "#{node['home_dir']}/tools/git-sed"
+  user node['owner']
+  group node['group']
+  action :sync
+end
+
+link "#{node['home_dir']}/bin/git-sed" do
+  to "#{node['home_dir']}/tools/git-sed/git-sed"
   link_type :symbolic
   owner node['owner']
   group node['group']
