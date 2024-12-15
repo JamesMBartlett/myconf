@@ -52,7 +52,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export GPG_TTY=$(tty)
 
-export PATH=$PATH:$HOME/bin
+export PATH=$HOME/bin:$PATH
 export PATH=$PATH:$HOME/.local/bin
 
 # Add command to delete least recently accessed files, beyond a certain capacity

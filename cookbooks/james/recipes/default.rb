@@ -9,3 +9,4 @@ include_recipe 'james::ssh'
 
 include_recipe 'james::python'
 include_recipe 'james::bazel'
+include_recipe 'james::nvim'

@@ -41,3 +41,8 @@ link "#{node['home_dir']}/bin/fd" do
   owner node['owner']
   group node['group']
 end
+
+remote_binary 'nvim' do
+  binary_path_in_tar 'bin/nvim'
+  strip_components 1
+end

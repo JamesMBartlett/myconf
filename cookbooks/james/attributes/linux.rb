@@ -19,3 +19,6 @@ default['gh']['sha256'] = '927614fbc6b391d136504ff2cc4b406f7082a2159ea51feb6f1db
 
 default['k9s']['url'] = 'https://github.com/derailed/k9s/releases/download/v0.27.4/k9s_Linux_amd64.tar.gz'
 default['k9s']['sha256'] = 'e507831ebd5f9b8c0380f212669f352c6e34cb760c916b498babae8be83c4392'
+
+default['nvim']['url'] = 'https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz'
+default['nvim']['sha256'] = '9f696e635d503b844e4e78e88a22bcf512a78f288bf471379afc3d0004e15217'
