@@ -10,4 +10,15 @@ local NerdTreeToggleWithCtx = function()
 end
 
 map('n', "<leader>n", NerdTreeToggleWithCtx)
+
+-- Autocmd to quit Vim if NERDTree is the only remaining buffer
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*",
+  callback = function()
+    if vim.fn.winnr('$') == 1 and vim.b.NERDTree and vim.b.NERDTree.isTabTree then
+      vim.cmd("quit")
+    end
+  end
+})
+
 return { "preservim/nerdtree" }
