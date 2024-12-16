@@ -3,11 +3,14 @@ return {
   lazy = false,
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
-	opts = {
-		provider = "copilot",
-	},	
+  opts = {
+    provider = "claude",
+    claude = {
+      api_key_name = "cmd:op item get --vault Auger Anthropic --fields label=credential --reveal",
+    },
+  },
   dependencies = {
-		"nvim-tree/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
@@ -33,7 +36,7 @@ return {
     },
     {
       -- Make sure to set this up properly if you have lazy=true
-      'MeanderingProgrammer/render-markdown.nvim',
+      "MeanderingProgrammer/render-markdown.nvim",
       opts = {
         file_types = { "markdown", "Avante" },
       },
