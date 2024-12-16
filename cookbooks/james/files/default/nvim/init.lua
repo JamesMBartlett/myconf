@@ -6,6 +6,10 @@ map("n", " ", "<Nop>", { silent = true, remap = false })
 map("v", " ", "<Nop>", { silent = true, remap = false })
 g.mapleader = " "
 g.maplocalleader = "\\"
+set.smartindent = false
+set.tabstop = 2
+set.shiftwidth = 2
+set.expandtab = true
 
 require("config.lazy")
 require("config.pipe")
