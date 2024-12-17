@@ -35,7 +35,8 @@ action :create do
   end
 
   binary_path = "#{extract_dir}/#{new_resource.name}"
-  sha256 = node[new_resource.name]['sha256']
+  attrs = node[new_resource.name]
+  sha256 = attrs.key?('sha256') ? attrs['sha256'] : nil
 
   url = node[new_resource.name]['url']
   if url.end_with?("tar.gz")

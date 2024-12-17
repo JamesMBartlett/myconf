@@ -22,3 +22,5 @@ default['k9s']['sha256'] = 'e507831ebd5f9b8c0380f212669f352c6e34cb760c916b498bab
 
 default['nvim']['url'] = 'https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz'
 default['nvim']['sha256'] = '9f696e635d503b844e4e78e88a22bcf512a78f288bf471379afc3d0004e15217'
+
+default['bzl']['url'] = 'https://get.bzl.io/linux_amd64/bzl'
