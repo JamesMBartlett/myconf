@@ -13,3 +13,5 @@ default['kubens']['sha256'] = 'c87651906e0d45ff4bf49924102147c2aec66bac1e0785992
 
 default['bazelisk']['url'] = 'https://github.com/bazelbuild/bazelisk/releases/download/v1.18.0/bazelisk-darwin-arm64'
 default['bazelisk']['sha256'] = '82b35ce200a390bf90af65c6814245b279213d88589d733bea5f288742a2feee'
+
+default['bzl']['url'] = 'https://get.bzl.io/darwin_arm64/bzl'
