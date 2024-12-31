@@ -7,6 +7,7 @@ return {
     "hrsh7th/cmp-cmdline",
     "saadparwaiz1/cmp_luasnip",
     "L3MON4D3/LuaSnip",
+    "hrsh7th/cmp-nvim-lsp-signature-help",
   },
   config = function()
     local cmp = require("cmp")
@@ -29,6 +30,7 @@ return {
         { name = "nvim_lsp" }, -- LSP completions
         { name = "luasnip" }, -- Snippet completion
         { name = "copilot" }, -- Copilot completions
+        { name = 'nvim_lsp_signature_help' },
       }, {
         { name = "buffer" }, -- Buffer completions
         { name = "path" }, -- Path completions
