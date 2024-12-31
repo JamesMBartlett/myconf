@@ -1,5 +1,5 @@
 remote_binary 'bazelisk' do
-  binary_name 'bazel'
+  binary_name 'bazelisk'
 end
 
 remote_binary 'bzl' do
