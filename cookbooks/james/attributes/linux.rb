@@ -17,8 +17,8 @@ default['bazelisk']['sha256'] = 'ce52caa51ef9e509fb6b7e5ad892e5cf10feb0794b0aed4
 default['gh']['url'] = 'https://github.com/cli/cli/releases/download/v2.35.0/gh_2.35.0_linux_amd64.tar.gz'
 default['gh']['sha256'] = '927614fbc6b391d136504ff2cc4b406f7082a2159ea51feb6f1db4fe6033feaa'
 
-default['k9s']['url'] = 'https://github.com/derailed/k9s/releases/download/v0.27.4/k9s_Linux_amd64.tar.gz'
-default['k9s']['sha256'] = 'e507831ebd5f9b8c0380f212669f352c6e34cb760c916b498babae8be83c4392'
+default['k9s']['url'] = 'https://github.com/derailed/k9s/releases/download/v0.32.7/k9s_Linux_amd64.tar.gz'
+default['k9s']['sha256'] = '03934727bfbf39b1e61a74d8e045796cda2de14f8ce4c01df27f43d4494021de'
 
 default['nvim']['url'] = 'https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz'
 default['nvim']['sha256'] = '9f696e635d503b844e4e78e88a22bcf512a78f288bf471379afc3d0004e15217'
