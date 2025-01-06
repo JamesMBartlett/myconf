@@ -3,6 +3,7 @@ bash 'setup git aliases' do
     git config --global alias.co checkout
     git config --global alias.s status
     git config --global alias.mru 'branch --sort=-committerdate'
+    git config --global alias.cob '!bash -c "git checkout $(git branch --sort=-committerdate | fzf --no-sort --layout=reverse-list)"'
   EOH
   user node['user']
   environment ({'HOME' => "#{node['home_dir']}"})
