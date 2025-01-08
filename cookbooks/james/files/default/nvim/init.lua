@@ -18,7 +18,7 @@ require("config.last_line")
 set.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
 set.number = true
-set.mouse = nil
+set.mouse = ""
 
 map('n', "<leader>sp", ":set invpaste paste?<CR>")
 
