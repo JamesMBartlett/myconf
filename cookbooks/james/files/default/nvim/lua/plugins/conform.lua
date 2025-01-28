@@ -25,7 +25,6 @@ return {
         c = { "clang-format" },
         cpp = { "clang-format" },
         proto = { "clang-format" },
-        tablegen = { "clang-format" },
       },
       default_format_opts = {
         lsp_format = "fallback",
