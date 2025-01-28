@@ -19,9 +19,16 @@ return {
 		end
 
     for _, server in ipairs(servers) do
-      require("lspconfig")[server].setup({
-        on_attach = on_attach,
-      })
+      if server == "clangd" then
+        require("lspconfig")[server].setup({
+          on_attach = on_attach,
+          filetypes = {"c", "cpp", "objc", "objcpp", "cuda"} -- exclude proto.
+        })
+      else
+        require("lspconfig")[server].setup({
+          on_attach = on_attach,
+        })
+      end
     end
   end,
 }
