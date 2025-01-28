@@ -15,7 +15,7 @@ return {
     },
   },
   config = function()
-    require('conform').setup({
+    require("conform").setup({
       formatters_by_ft = {
         lua = { "stylua" },
         bzl = { "buildifier" },
@@ -25,23 +25,24 @@ return {
         c = { "clang-format" },
         cpp = { "clang-format" },
         proto = { "clang-format" },
+        tablegen = { "clang-format" },
       },
       default_format_opts = {
         lsp_format = "fallback",
       },
       formatters = {
         autoflake = {
-          prepend_args = {"--remove-all-unused-imports"},
+          prepend_args = { "--remove-all-unused-imports" },
         },
         buildifier = {
-          prepend_args = {"--lint=fix"},
+          prepend_args = { "--lint=fix" },
         },
         shfmt = {
           prepend_args = { "-i", "2" },
         },
       },
     })
-    require('mason-conform').setup()
+    require("mason-conform").setup()
   end,
   init = function()
     -- If you want the formatexpr, here is the place to set it
