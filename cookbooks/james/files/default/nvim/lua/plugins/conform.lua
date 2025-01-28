@@ -21,6 +21,10 @@ return {
         bzl = { "buildifier" },
         python = { "autoflake", "isort", "black" },
         javascript = { "prettierd", "prettier", stop_after_first = true },
+        cuda = { "clang-format" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+        proto = { "clang-format" },
       },
       default_format_opts = {
         lsp_format = "fallback",
