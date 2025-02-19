@@ -8,6 +8,24 @@ return {
     claude = {
       api_key_name = "cmd:op item get --vault Auger Anthropic --fields label=credential --reveal",
     },
+    file_selector = {
+      provider = "telescope",
+      provider_opts = {
+        get_filepaths = function(params)
+          local cwd = params.cwd
+          local selected_filepaths = params.selected_filepaths
+          local cmd = string.format("fd --base-directory '%s' -H -E .git --type f", vim.fn.fnameescape(cwd))
+          local output = vim.fn.system(cmd)
+          local filepaths = vim.split(output, "\n", { trimempty = true })
+          return vim
+            .iter(filepaths)
+            :filter(function(filepath)
+              return not vim.tbl_contains(selected_filepaths, filepath)
+            end)
+            :totable()
+        end,
+      },
+    },
   },
   dependencies = {
     "nvim-tree/nvim-web-devicons",
