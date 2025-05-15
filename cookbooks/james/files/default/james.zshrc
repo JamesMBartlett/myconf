@@ -64,3 +64,5 @@ rmcache() {
     awk --assign RS='\0' --assign ORS='\0' --assign CAPACITY=$(($2 * 1024 * 1024 * 1024 / 512)) '{du += $2}; du > CAPACITY { print $3 }' |
     xargs -r0 rm
 }
+
+source ~/.nvm/nvm.sh

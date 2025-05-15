@@ -46,3 +46,6 @@ remote_binary 'nvim' do
   binary_path_in_tar 'bin/nvim'
   strip_components 1
 end
+
+include_recipe 'james::node'
+include_recipe 'james::rust'
