@@ -5,20 +5,21 @@ return {
   build = "make",
   opts = {
     provider = "claude",
-    -- cursor_applying_provider = "groq",
-    -- behaviour = {
-    --   enable_cursor_planning_mode = true,
-    -- },
+    cursor_applying_provider = "groq",
+    behaviour = {
+      enable_cursor_planning_mode = true,
+    },
     claude = {
       api_key_name = "cmd:op item get --vault Auger Anthropic --fields label=credential --reveal",
+      disable_tools = true,
     },
     vendors = {
       groq = {
         __inherited_from = 'openai',
         api_key_name = "cmd:op item get --vault Auger Groq --fields label=credential --reveal",
         endpoint = 'https://api.groq.com/openai/v1/',
-        model = 'qwen-2.5-coder-32b',
-        max_tokens = 8192,
+        model = 'llama-3.3-70b-versatile',
+        max_tokens = 32768,
       },
     },
     file_selector = {
@@ -39,6 +40,7 @@ return {
         end,
       },
     },
+    disabled_tools = { "python" },
   },
   dependencies = {
     "nvim-tree/nvim-web-devicons",
@@ -70,6 +72,7 @@ return {
       "MeanderingProgrammer/render-markdown.nvim",
       opts = {
         file_types = { "markdown", "Avante" },
+        latex = false,
       },
       ft = { "markdown", "Avante" },
     },

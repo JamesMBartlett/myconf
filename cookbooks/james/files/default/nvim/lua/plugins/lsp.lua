@@ -24,6 +24,25 @@ return {
           on_attach = on_attach,
           filetypes = {"c", "cpp", "objc", "objcpp", "cuda"} -- exclude proto.
         })
+      elseif server == "gopls" then
+        require("lspconfig")[server].setup({
+          on_attach = on_attach,
+          settings = {
+            gopls = {
+              directoryFilters = {
+                "-bazel-bin",
+                "-bazel-out",
+                "-bazel-gimlet",
+                "-bazel-testlogs",
+                "-external",
+                "-**/node_modules",
+                "-**/storybook-static",
+                "-**/.next",
+                "-**/__pycache__"
+              },
+            },
+          },
+        })
       else
         require("lspconfig")[server].setup({
           on_attach = on_attach,
