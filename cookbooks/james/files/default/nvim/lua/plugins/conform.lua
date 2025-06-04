@@ -25,6 +25,7 @@ return {
         c = { "clang-format" },
         cpp = { "clang-format" },
         proto = { "clang-format" },
+        go = {"gofumpt", "goimports", "gci"},
       },
       default_format_opts = {
         lsp_format = "fallback",
@@ -38,6 +39,9 @@ return {
         },
         shfmt = {
           prepend_args = { "-i", "2" },
+        },
+        gci = {
+          prepend_args = { "-s", "standard", "-s", "default", "-s", "prefix(gimletlabs.ai/gimlet)" },
         },
       },
     })
