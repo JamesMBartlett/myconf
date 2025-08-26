@@ -5,7 +5,7 @@ return {
     require("mason").setup()
     require("mason-lspconfig").setup()
 
-    local servers = { "pyright", "clangd", "bzl", "gopls" }
+    local servers = { "pyright", "clangd", "bzl", "gopls", "ts_ls" }
 
 		local on_attach = function(_, bufnr)
 		  local function buf_set_keymap(...)
@@ -29,6 +29,8 @@ return {
           on_attach = on_attach,
           settings = {
             gopls = {
+              gofumpt = true,
+              usePlaceholders = true,
               directoryFilters = {
                 "-bazel-bin",
                 "-bazel-out",
