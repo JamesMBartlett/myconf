@@ -4,18 +4,46 @@ end
 
 homebrew_update 'update homebrew'
 
-homebrew_package 'wget'
-homebrew_package 'zsh'
-homebrew_package 'ripgrep'
-homebrew_package 'fd'
-homebrew_package 'python'
-homebrew_package 'go'
-homebrew_package 'nodejs'
-homebrew_package 'vim'
-homebrew_package 'tmux'
-homebrew_package 'cmake'
-homebrew_package 'gpg2'
-homebrew_package 'gnupg'
-homebrew_package 'gh'
-homebrew_package 'neovim'
+homebrew_package 'wget' do
+  homebrew_user node['user']
+end
+homebrew_package 'zsh' do
+  homebrew_user node['user']
+end
+homebrew_package 'ripgrep' do
+  homebrew_user node['user']
+end
+homebrew_package 'fd' do
+  homebrew_user node['user']
+end
+homebrew_package 'python' do
+  homebrew_user node['user']
+end
+homebrew_package 'go' do
+  homebrew_user node['user']
+end
+homebrew_package 'nodejs' do
+  homebrew_user node['user']
+end
+homebrew_package 'vim' do
+  homebrew_user node['user']
+end
+homebrew_package 'tmux' do
+  homebrew_user node['user']
+end
+homebrew_package 'cmake' do
+  homebrew_user node['user']
+end
+homebrew_package 'gpg2' do
+  homebrew_user node['user']
+end
+homebrew_package 'gnupg' do
+  homebrew_user node['user']
+end
+homebrew_package 'gh' do
+  homebrew_user node['user']
+end
+homebrew_package 'neovim' do
+  homebrew_user node['user']
+end
 #homebrew_package 'derailed/k9s/k9s'
