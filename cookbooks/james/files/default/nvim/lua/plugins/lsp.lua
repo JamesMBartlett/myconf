@@ -2,9 +2,6 @@ return {
   "neovim/nvim-lspconfig",
   dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
   config = function()
-    require("mason").setup()
-    require("mason-lspconfig").setup()
-
     local servers = { "pyright", "clangd", "bzl", "gopls", "ts_ls" }
 
 		local on_attach = function(_, bufnr)
@@ -20,12 +17,12 @@ return {
 
     for _, server in ipairs(servers) do
       if server == "clangd" then
-        require("lspconfig")[server].setup({
+        vim.lsp.config(server, {
           on_attach = on_attach,
           filetypes = {"c", "cpp", "objc", "objcpp", "cuda"} -- exclude proto.
         })
       elseif server == "gopls" then
-        require("lspconfig")[server].setup({
+        vim.lsp.config(server, {
           on_attach = on_attach,
           settings = {
             gopls = {
@@ -46,10 +43,11 @@ return {
           },
         })
       else
-        require("lspconfig")[server].setup({
+        vim.lsp.config(server, {
           on_attach = on_attach,
         })
       end
+      vim.lsp.enable(server)
     end
   end,
 }
