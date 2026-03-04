@@ -33,3 +33,14 @@ vim.diagnostic.config({
   virtual_text = true,
   update_in_insert = false,
 })
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = '*',
+  callback = function(args)
+    local ft = vim.bo[args.buf].filetype
+    local lang = vim.treesitter.language.get_lang(ft)
+    if lang and pcall(vim.treesitter.language.inspect, lang) then
+      vim.treesitter.start()
+    end
+  end,
+})
